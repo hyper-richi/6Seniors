@@ -65,22 +65,22 @@ console.log(true ** 3); // один в степени 3
 // Логическое
 
 console.log("------------Логическое------------");
-console.log(Boolean(1));
-console.log(Boolean(11));
-console.log(Boolean(0));
-console.log(Boolean(-0));
-console.log(Boolean(123n)); // BigInt
-console.log(Boolean(""));
-console.log(Boolean(" "));
-console.log(Boolean("string"));
-console.log(Boolean(null));
-console.log(Boolean(undefined));
-console.log(Boolean(NaN));
-console.log(Boolean(Infinity));
-console.log(Boolean({}));
-console.log(Boolean({ false: false }));
-console.log(Boolean([]));
-console.log(Boolean([false]));
+console.log("Boolean 1", Boolean(1));
+console.log("Boolean 11", Boolean(11));
+console.log("Boolean 0", Boolean(0));
+console.log("Boolean -0", Boolean(-0));
+console.log("Boolean 123n", Boolean(123n)); // BigInt
+console.log('Boolean ""', Boolean(""));
+console.log('Boolean " "', Boolean(" "));
+console.log('Boolean "string"', Boolean("string"));
+console.log("Boolean null", Boolean(null));
+console.log("Boolean undefined", Boolean(undefined));
+console.log("Boolean NaN", Boolean(NaN));
+console.log("Boolean Infinity", Boolean(Infinity));
+console.log("Boolean {}", Boolean({}));
+console.log("Boolean { false: false }", Boolean({ false: false }));
+console.log("Boolean []", Boolean([]));
+console.log("Boolean [false]", Boolean([false]));
 
 console.log("hello", !!"hello");
 console.log(!!11);
