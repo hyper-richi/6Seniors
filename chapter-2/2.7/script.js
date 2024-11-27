@@ -44,6 +44,7 @@ console.log("NaN->", Number(NaN));
 console.log(Number(true));
 console.log(Number(false));
 console.log("123n->", Number(123n)); // BigInt
+console.log("1234567890123456789012345678901234567890n->", Number(1234567890123456789012345678901234567890n)); // BigInt
 
 // при использовании математических операторов  *, +, -, /, %, **.
 
