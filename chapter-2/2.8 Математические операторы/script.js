@@ -26,6 +26,7 @@ console.log("Infinity ** NaN: ", Infinity ** NaN);
 console.log("NaN ** Infinity: ", NaN ** Infinity);
 
 console.log("#### арифметика с присваиванием  ####");
+
 let n = 1;
 console.log("1 += 5: ", (n += 5));
 console.log("1 =+ 5: ", (n = +5));

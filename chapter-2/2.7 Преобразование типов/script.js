@@ -33,8 +33,9 @@ console.log(`Value is: ${value}`);
 // Числовое
 
 console.log("------------Числовое------------");
+console.log('Number(""):', Number(""));
 console.log(Number("1"));
-console.log(Number("   123   "));
+console.log('Number("   123   ")', Number("   123   "));
 console.log(Number("89."));
 console.log(Number("89:"));
 console.log("undefined->", Number(undefined)); // когда не возможно преобразовать к числу будет NaN
@@ -51,11 +52,11 @@ console.log("1234567890123456789012345678901234567890n->", Number(12345678901234
 console.log("6" / "2");
 console.log("5" - 3);
 console.log("5" * "2");
-console.log(+true);
-console.log(+false);
-console.log(+null);
-console.log(+undefined);
-console.log(+"123");
+console.log(+true); // 1
+console.log(+false); // 0
+console.log(+null); // 0
+console.log(+undefined); // NaN
+console.log(+"123"); // 123
 console.log(-true); // -1
 console.log(-false); // -0 (или просто `0`)
 console.log(-null); // -0 (или просто `0`)
