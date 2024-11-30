@@ -40,5 +40,5 @@ console.log("a: ", a); // a = 2
 
 let counter2 = 1;
 let a2 = counter++; // постфиксная
-console.log("counter2: ", counter2);
+console.log("counter2: ", counter2); // counter2 = 1
 console.log("a2: ", a2); // a2 = 2
