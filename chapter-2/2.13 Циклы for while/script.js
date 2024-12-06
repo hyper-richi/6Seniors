@@ -1,32 +1,51 @@
 // while Выведите в консоль числа от 1 до 100.
-let i = 0;
-while (i <= 100) {
-    // console.log("i: ", i); // 0-100
-    i++;
-    // console.log("i: ", i); // 1-101
+function foo() {
+    let i = 0;
+    while (i <= 100) {
+        // console.log("i: ", i); // 0-100
+        i++;
+        // console.log("i: ", i); // 1-101
+    }
 }
-
+// foo()
 // Дано число num с неким начальным значением. Умножайте его на 3 столько раз, пока результат умножения не станет больше 1000.
 // Какое число получится? Посчитайте количество итераций, необходимых для этого.
 
-let num = 100;
-let j = 0;
-do {
-    num *= 3;
-    j++;
-    //console.log('num: ', num);
-} while (num < 1000);
+function foo() {
+    let num = 100;
+    let j = 0;
+    do {
+        num *= 3;
+        j++;
+        //console.log('num: ', num);
+    } while (num < 1000);
+}
 //console.log(j);
+// foo()
 
 /****************/
 
-/* let i2 = 0;
+function fooFor() {
+    let i2 = 0;
+    function fig() {
+        console.log("fig: ");
+        return true;
+    }
 
-for (; i2 < 3; ) {
-    console.log(i2++);
-} */
+    function condition() {
+        console.log("condition: ", i2);
+        return false; //i2 < 3;
+    }
 
-/* let j2 = 0;
+    for (fig(); condition(); ) {
+        console.log(i2++);
+    }
+}
+
+fooFor();
+
+/*
+let j2 = 0;
 
 function name() {
     return j2 < 3;
@@ -182,10 +201,10 @@ function foo() {
 /*
 Используя цикл и метод push заполните массив числами от 1 до 10.
 */
-function name(params) {
+function pushArray(params) {
     let arr = [];
     for (let i = 1; i <= 10; i++) {
         arr.push(i);
     }
 }
-// foo();
+// pushArray();
