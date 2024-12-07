@@ -42,7 +42,7 @@ function fooFor() {
     }
 }
 
-fooFor();
+//fooFor();
 
 /*
 let j2 = 0;
