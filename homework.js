@@ -32,4 +32,3 @@ console.log("isNan: NaN", isNan(NaN));
 console.log("isNan: undefined", isNan(undefined));
 console.log('isNan: "NaN"', isNan("NaN"));
 console.log("isNan: null", isNan(null));
-console.log("isNan: ", isNan);
