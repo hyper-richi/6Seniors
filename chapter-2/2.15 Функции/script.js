@@ -1,17 +1,9 @@
-function anotherFunction() {
-    return "some text";
+function func(num) {
+    console.log("func", num);
+    num = 2; // меняем локальную переменную
+    console.log("func", num);
 }
 
-let from = "Аня";
-
-// anotherFunction() выполнится только если не передан text
-function showMessage(from, text = anotherFunction()) {
-    console.log(from + ": " + text);
-}
-
-// showMessage(from, "Привет"); // Аня: Привет
-showMessage(from, NaN); // Аня: NaN
-showMessage(from, null); // Аня: null
-showMessage(from, 0); // Аня: 0
-showMessage(from, undefined); // Аня: some text
-showMessage(from); // Аня: some text
+let num = 1;
+func(num);
+console.log(num); // выведет 1 - ничего не поменялось
