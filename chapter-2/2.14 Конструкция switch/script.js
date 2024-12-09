@@ -17,6 +17,26 @@ function foo() {
     }
 }
 // foo();
+
+function foo() {
+    let x = "value";
+    switch (x) {
+        case "value1": // if (x === 'value1')
+            console.log("value1: ");
+            break;
+        case "value3": // if (x === 'value2')
+            console.log("value: ");
+
+        case "value2": // if (x === 'value2')
+            console.log("value2: ");
+        //break;
+
+        default:
+            console.log("default: ");
+            break;
+    }
+}
+foo();
 function getDayName(day) {
     switch (day) {
         case 0:
@@ -31,7 +51,7 @@ function getDayName(day) {
     console.log("end");
 }
 
-console.log(getDayName(1)); // Monday
+//console.log(getDayName(1)); // Monday
 
 function getDayMessage(day) {
     switch (day) {
@@ -48,6 +68,6 @@ function getDayMessage(day) {
     console.log("This is after the switch");
 }
 
-getDayMessage(1);
+//getDayMessage(1);
 // Monday
 // This is after the switch

@@ -55,8 +55,8 @@ function showMessage(from, text = anotherFunction()) {
     console.log(from + ": " + text);
 }
 
-showMessage(from, "Привет"); // Аня: Привет
-showMessage(from); // Аня: some text
+// showMessage(from, "Привет"); // Аня: Привет
+// showMessage(from); // Аня: some text
 
 // Перепишите функцию, используя оператор '?' или '||'
 
@@ -98,29 +98,12 @@ function min(a, b) {
 //console.log("min(3, -1): ", min(3, -1));
 //console.log("min(1, 1): ", min(1, 1));
 
-// Напишите функцию pow(x,n), которая возводит x в степень n и возвращает результат.
-// Только натуральные значения n, т.е. целые от 1 и выше.
 
-/*
-pow(3, 2) = 3 * 3 = 9
-pow(3, 3) = 3 * 3 * 3 = 27
-pow(1, 100) = 1 * 1 * ...* 1 = 1
-*/
 
-let x = Number(prompt("Введите число х возводимое в степень:"));
-let n = 0; // = Number(prompt("Введите степень:"));
-
-function isNaturalNumbers(num) {
-    return num % 1 === 0 && num > 0;
+function func() {
+    console.log(num);
 }
 
-function pow() {
-    for (n = Number(prompt("Введите натуральное число степени, n:")); !isNaturalNumbers(n); ) {
-        n = Number(prompt("Введите натуральное число степени, n:"));
-    }
-    return `${x} ** ${n} = ${x ** n}`;
-}
-console.log(pow());
-//console.log("pow(3, 2): ", pow(3, 2));
-//console.log("pow(3, 3): ", pow(3, 3));
-//console.log("pow(1, 100): ", pow(1, 100));
+let num = 1; // переменная снаружи функции
+func(); // выведет 1
+
