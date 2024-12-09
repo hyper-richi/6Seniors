@@ -1,23 +1,4 @@
-/*
-Обратите внимание: функция изменяет значение from, но это изменение не видно снаружи.
-Функция всегда получает только копию значения
-*/
-function foo() {
-    let from = "Аня";
 
-    function showMessage(from, text) {
-        from = "*" + from + "*";
-
-        console.log(from + ": " + text);
-        return (from = "123");
-    }
-
-    showMessage(from, "Привет"); // *Аня*: Привет
-
-    // значение "from" осталось прежним
-    console.log(from); // Аня
-}
-//foo();
 
 /*
 
