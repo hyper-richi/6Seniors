@@ -19,12 +19,12 @@ function foo() {
 // foo();
 
 function foo() {
-    let x = "value";
+    let x = "value3";
     switch (x) {
         case "value1": // if (x === 'value1')
             console.log("value1: ");
             break;
-        case "value3": // if (x === 'value2')
+        case "value3": // if (x === 'value3')
             console.log("value: ");
 
         case "value2": // if (x === 'value2')
@@ -36,7 +36,10 @@ function foo() {
             break;
     }
 }
-foo();
+
+foo(); // "value3", "value2", "default: "
+
+
 function getDayName(day) {
     switch (day) {
         case 0:
