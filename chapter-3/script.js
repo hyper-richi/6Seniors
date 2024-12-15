@@ -1,20 +1,9 @@
-function factorial(n) {
-    debugger; // Точка останова для отладки
-    if (n < 0) {
-        return "Ошибка: число не может быть отрицательным!";
+// pow.js
+export function pow(x, n) {
+    // Проверяем, что степень n - это целое число и n >= 0
+    if (!Number.isInteger(n) || n < 0) {
+        console.log("Степень n должна быть целым числом и n >= 0");
     }
-    let result = 1;
-    for (var i = 1; i <= n; ) {
 
-        debugger; // Точка останова для отладки
-        i++;
-        debugger; // Точка останова для отладки
-
-        result *= i;
-    }
-    return result;
+    return x ** n;
 }
-
-// Пример вызова функции
-console.log("factorial(5)", factorial(5)); // Ожидаемый результат: 120
-console.log("factorial(-3)", factorial(-3));
