@@ -1,12 +1,16 @@
 let user = {
     name: "John",
     age: 30,
-    isAdmin: true,
 };
 
+let clone = {}; // новый пустой объект
+
+// давайте скопируем все свойства user в него
 for (let key in user) {
-    // ключи
-    console.log("key:", key); // name, age, isAdmin
-    // значения ключей
-    console.log("user[key]:", user[key]); // John, 30, true
+    clone[key] = user[key];
 }
+
+console.log("clone: ", clone);
+
+clone.name = "Pete"; // изменим в нём данные
+console.log("user.name", user.name);
