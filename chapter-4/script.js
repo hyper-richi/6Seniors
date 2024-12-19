@@ -19,6 +19,23 @@ for (let key in user) {
 clone.name = "Pete"; // изменим в нём данные
 // console.log("user.name", user.name);
 
+let cloneNumber = Object.assign(0, user);
+console.log("cloneNumber: ", cloneNumber);
+
+let cloneString = Object.assign("", user);
+console.log("cloneString: ", cloneString);
+
+//let cloneNullUndefined = Object.assign(null, user);
+//console.log("cloneNullUndefined: ", cloneNullUndefined);
+
+let mySymbol = Symbol();
+let cloneSymbol = Object.assign(mySymbol, user);
+console.log("cloneSymbol: ", cloneSymbol);
+
+let cloneArr = Object.assign([], user);
+console.log("cloneArr: ", cloneArr['name']);
+// [ name: 'John', age: 30, test: undefined ]
+
 let fullName = {
     name: "John",
 };
