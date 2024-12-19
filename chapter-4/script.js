@@ -10,7 +10,15 @@ for (let key in user) {
     clone[key] = user[key];
 }
 
-console.log("clone: ", clone);
+// console.log("clone: ", clone);
 
 clone.name = "Pete"; // изменим в нём данные
-console.log("user.name", user.name);
+// console.log("user.name", user.name);
+
+let fullName = {
+    name: "John",
+};
+
+let admin = fullName;
+fullName = null;
+console.log("admin: ", admin);
