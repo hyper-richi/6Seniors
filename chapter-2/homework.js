@@ -19,7 +19,7 @@ function fizzBuzz() {
         }
     }
 }
-
+fizzBuzz()
 // напишите проверку на NaN без использования методов isNaN
 
 function isNan(variable) {
