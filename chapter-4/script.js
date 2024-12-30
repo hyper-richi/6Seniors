@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 const user = {
     name: "John",
@@ -17,9 +17,9 @@ const user = {
     },
 };
 
-user.sayHi();
-user.arrow();
-user.printThis();
+//user.sayHi();
+//user.arrow();
+//user.printThis();
 
 const obj = {
     value: 42,
