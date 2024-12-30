@@ -1,39 +1,16 @@
-// "use strict";
+const target = { a: 1, b: 2 };
+const src1 = { b: 4, c: 5 };
+const src2 = { b: 9 };
 
-const user = {
+const returnedTarget = Object.assign(target, src2, src1);
+
+console.log(target);
+
+let user = {
     name: "John",
-    sayHi() {
-        let arrow = () => console.log("console-1", this);
-        arrow();
-    },
-    arrow: () => {
-        this.name = "value";
-        console.log("console-2", this);
-    },
-    printThis: function () {
-        console.log("console-3", this);
-        let arrow = () => console.log("console-3.1", this);
-        arrow();
-    },
 };
 
-//user.sayHi();
-//user.arrow();
-//user.printThis();
-
-const obj = {
-    value: 42,
-    getValue: function () {
-        return this.value;
-    },
-    printThis() {
-        return this;
-    },
-    thisInObj: this,
-};
-console.log("obj: ", obj);
-
-function getThis() {
-    return this;
-}
-console.log("getThis(): ", getThis());
+let admin = user;
+user = null;
+console.log("admin: ", admin);
+console.log("user: ", user); // null
