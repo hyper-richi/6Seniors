@@ -1,4 +1,3 @@
-// user.sayHi();
 "use strict";
 
 const user = {
@@ -11,15 +10,30 @@ const user = {
         this.name = "value";
         console.log("console-2", this);
     },
+    printThis: function () {
+        console.log("console-3", this);
+        let arrow = () => console.log("console-3.1", this);
+        arrow();
+    },
 };
+
+user.sayHi();
 user.arrow();
+user.printThis();
 
 const obj = {
     value: 42,
     getValue: function () {
         return this.value;
     },
-    this: this,
-    this1: this,
+    printThis() {
+        return this;
+    },
+    thisInObj: this,
 };
 console.log("obj: ", obj);
+
+function getThis() {
+    return this;
+}
+console.log("getThis(): ", getThis());
