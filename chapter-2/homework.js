@@ -19,7 +19,8 @@ function fizzBuzz() {
         }
     }
 }
-fizzBuzz()
+// fizzBuzz();
+
 // напишите проверку на NaN без использования методов isNaN
 
 function isNan(variable) {
@@ -28,7 +29,11 @@ function isNan(variable) {
         return "Yes";
     } else return "No";
 }
-console.log("isNan: NaN", isNan(NaN));
-console.log("isNan: undefined", isNan(undefined));
-console.log('isNan: "NaN"', isNan("NaN"));
-console.log("isNan: null", isNan(null));
+
+function isNan2(variable) {
+    return variable !== variable;
+}
+console.log("isNan: NaN", isNan2(NaN));
+console.log("isNan: undefined", isNan2(undefined));
+console.log('isNan: "NaN"', isNan2("NaN"));
+console.log("isNan: null", isNan2(null));
