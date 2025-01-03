@@ -79,10 +79,6 @@ let b = new B(a);
 function Calculator() {
     this.a = Number(prompt("a", 0));
     this.b = Number(prompt("b", 0));
-    //this.sum = this.a + this.b;
-    //this.sum = alert(`a+b = ${this.sum}`);
-    //this.mul = this.a * this.b;
-    //this.mul = alert(`a*b = ${this.mul}`);
 
     this.sum = function () {
         alert(`sum = ${this.a + this.b}`);
@@ -93,7 +89,7 @@ function Calculator() {
     };
 }
 
-// const calculator = new Calculator();
+//const calculator = new Calculator();
 
 //calculator.sum();
 //calculator.mul();
@@ -107,7 +103,94 @@ function Accumulator(startingValue) {
     };
 }
 
-const accumulator = new Accumulator(1);
-accumulator.read();
-accumulator.read();
-alert(`итоговое число: ${accumulator.value}`);
+//const accumulator = new Accumulator(1);
+//accumulator.read();
+//accumulator.read();
+//alert(`итоговое число: ${accumulator.value}`);
+
+// задача 4
+
+const users = [
+    new User({ id: 1, name: "Alice", age: 25, email: "alice@example.com", tags: ["developer", "react"] }),
+    new User({ id: 2, name: "Bob", age: 30, email: "bob@example.com", tags: ["designer", "figma"] }),
+    new User({ id: 3, name: "Charlie", age: 35, email: "charlie@example.com", tags: ["developer", "nodejs"] }),
+    new User({ id: 4, name: "Diana", age: 28, email: "diana@example.com", tags: ["manager", "scrum"] }),
+    new User({ id: 5, name: "Eve", age: 22, email: "eve@example.com", tags: ["developer", "javascript"] }),
+];
+
+// Ожидаемый результат
+
+({
+    averageAge: 28, // Средний возраст пользователей
+    developers: ["Alice", "Charlie", "Eve"], // Список имен пользователей с тегом "developer"
+    emailsByTag: {
+        developer: ["alice@example.com", "charlie@example.com", "eve@example.com"],
+        designer: ["bob@example.com"],
+        manager: ["diana@example.com"],
+    },
+    youngestUser: { id: 5, name: "Eve", age: 22, email: "eve@example.com", tags: ["developer", "javascript"] },
+});
+
+function Create(arr) {
+    this.averageAge =
+        arr.reduce((previousValue, currentValue, index) => {
+            return previousValue + currentValue.name.age;
+        }, 0) / arr.length;
+    this.developers = arr.filter((user) => user.name.tags.includes("developer")).map((user) => user.name.name);
+
+    this.emailsByTag = {
+        developer: arr
+            .filter((user) => {
+                if (user.name.tags.includes("developer")) {
+                    return user.name.name;
+                }
+            })
+            .map((user) => user.name.email),
+        designer: arr
+            .filter((user) => {
+                if (user.name.tags.includes("designer")) {
+                    return user.name.name;
+                }
+            })
+            .map((user) => user.name.email),
+        manager: arr
+            .filter((user) => {
+                if (user.name.tags.includes("manager")) {
+                    return user.name.name;
+                }
+            })
+            .map((user) => user.name.email),
+    };
+    this.youngestUser = arr.reduce((previousUser, currentUser) => {
+        return currentUser.name.age < previousUser.name.age ? currentUser : previousUser;
+    });
+}
+
+//const result = new Create(users);
+// console.log("result: ", result);
+
+// задача 5
+
+function Counter() {
+    this.count = 0;
+    this.increment = function () {
+        this.count++;
+    };
+    this.decrement = function () {
+        this.count--;
+    };
+
+    this.getCount = function () {
+        console.log("this.count", this.count);
+        return this.count;
+    };
+}
+
+const counter1 = new Counter();
+counter1.increment();
+counter1.increment();
+counter1.getCount();
+
+const counter2 = new Counter();
+counter2.decrement();
+counter2.getCount();
