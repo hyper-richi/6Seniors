@@ -186,11 +186,33 @@ function Counter() {
     };
 }
 
-const counter1 = new Counter();
+/* const counter1 = new Counter();
 counter1.increment();
 counter1.increment();
 counter1.getCount();
 
 const counter2 = new Counter();
 counter2.decrement();
-counter2.getCount();
+counter2.getCount(); */
+
+// задача 6
+
+function Product(name, price, category) {
+    this.name = name;
+    this.price = price;
+    this.caregory = category;
+
+    this.discount = function (percent) {
+        const discountPrice = (this.price / 100) * percent;
+        this.price -= discountPrice;
+        console.log(" this.price: ", this.price);
+        return this.price;
+    };
+}
+
+//const laptop = new Product("Laptop", 1000, "Electronics");
+//const book = new Product("Book", 20, "Literature");
+
+//laptop.discount(10); // 900
+//book.discount(25); // 15
+
