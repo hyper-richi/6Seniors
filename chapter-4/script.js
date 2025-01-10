@@ -21,3 +21,6 @@ console.log( Symbol.keyFor(globalSymbol) ); // name, глобальный сим
 console.log( Symbol.keyFor(localSymbol) ); // undefined для неглобального символа
 
 console.log( localSymbol.description ); // name
+
+const x = y = 5, z = 6; // возвращает 6 в консоль
+console.log(x); // 6
