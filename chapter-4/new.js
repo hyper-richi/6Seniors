@@ -48,17 +48,22 @@ function BigUser2(name) {
 //console.log("return this:", new BigUser2("John")); // возвращает this
 
 function BigUser3(name) {}
-console.log("return this:", new BigUser3()); // возвращает this BigUser3 {}
+// console.log("return this:", new BigUser3()); // возвращает this BigUser3 {}
 
 // Создание методов в конструкторе
 
-function UserWithMethods(name) {
-    this.name = name;
+function foo() {
+    console.log("foo.this:", this);
+}
 
+function UserWithMethods(name, cb) {
+    this.name = name;
+    this.cb = cb;
     this.sayHi = function () {
         console.log("this.sayHi:", this.name);
     };
 }
 
-let johnWithMethods = new UserWithMethods("John");
+let johnWithMethods = new UserWithMethods("John", foo);
 //console.log("johnWithMethods:", johnWithMethods, johnWithMethods.sayHi());
+johnWithMethods.cb();

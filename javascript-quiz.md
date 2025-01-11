@@ -5,13 +5,12 @@
 -   [ ] `<>`
 -   [ ] `~`
 -   [ ] `==!`
--   [x] `!==`
+-   [ ] `!==`
 
 <details>
-  <summary>Нажмите здесь, чтобы раскрыть</summary>
-  <p>Это скрытое содержимое, которое будет отображаться при нажатии на заголовок.
-  </p>
-  -   [x] `!==`
+  <summary>Ответ</summary>
+
+-   [x] `!==`
 </details>
 
 [Reference Javascript Comparison Operators](https://www.w3schools.com/js/js_operators.asp)
@@ -19,11 +18,17 @@
 #### Q2. How is a forEach statement different from a for statement?
 
 -   [ ] Only a for statement uses a callback function.
--   [x] A for statement is generic, but a forEach statement can be used only with an array.
+-   [ ] A for statement is generic, but a forEach statement can be used only with an array.
 -   [ ] Only a forEach statement lets you specify your own iterator.
 -   [ ] A forEach statement is generic, but a for statement can be used only with an array.
 
 [Reference Differences between forEach and for loop](https://www.geeksforgeeks.org/difference-between-foreach-and-for-loop-in-javascript/)
+
+<details>
+  <summary>Ответ</summary>
+
+-   [x] A for statement is generic, but a forEach statement can be used only with an array.
+</details>
 
 #### Q3. Review the code below. Which statement calls the addTax function and passes 50 as an argument? How would you use this function to find out how much tax should be paid on \$50?
 
@@ -35,28 +40,47 @@ function addTax(total) {
 
 -   [ ] addTax = 50;
 -   [ ] return addTax 50;
--   [x] addTax(50);
+-   [ ] addTax(50);
 -   [ ] addTax 50;
 
 [Reference functions in javascript](https://www.w3schools.com/js/js_functions.asp)
 
+<details>
+  <summary>Ответ</summary>
+
+-   [x] addTax(50);
+</details>
+
+
 #### Q4. Which statement is the correct way to create a variable called rate and assign it the value 100?
 
--   [x] let rate = 100;
+-   [ ] let rate = 100;
 -   [ ] let 100 = rate;
 -   [ ] 100 = let rate;
 -   [ ] rate = 100;
 
 [Reference Javascript Assignment operators](https://www.w3schools.com/js/js_operators.asp)
 
+<details>
+  <summary>Ответ</summary>
+
+-   [x] let rate = 100;
+</details>
+
 #### Q5. Which statement creates a new object using the Person constructor? Which statement creates a new Person object called "student"?
 
--   [x] var student = new Person();
+-   [ ] var student = new Person();
 -   [ ] var student = construct Person;
 -   [ ] var student = Person();
 -   [ ] var student = construct Person();
 
 [Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+<details>
+  <summary>Ответ</summary>
+
+-   [x] var student = new Person();
+</details>
 
 #### Q6. When would the final statement in the code shown be logged to the console? When would 'results shown' be logged to the console?
 
@@ -74,6 +98,13 @@ console.log('Results shown');
 -   [x] immediately
 
 [Reference Javascript is synchronous and single threaded](https://stackoverflow.com/a/2035662/15067394)
+
+<details>
+  <summary>Ответ</summary>
+
+-   [x] var student = new Person();
+</details>
+
 
 ### Q7. Which snippet could you add to this code to print "food" to the console?
 
