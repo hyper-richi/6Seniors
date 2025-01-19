@@ -35,7 +35,6 @@ const arrow = (name) => {
 };
 //arrow("global");
 
-
 const car = {
     marka: "BMW",
     model: "M6",
@@ -47,7 +46,20 @@ const car = {
     getThisGetter() {
         // console.log("this", this);
         // return () => this;
+        const obj = {
+            objThis: this, // car
+        };
+        console.log("objThis: ", obj.objThis);
+
         const arrow = () => this;
-        return arrow;
+        // return arrow;
+    },
+    arrow: () => {
+        const obj = {
+            objThis: this, // window
+        };
+        console.log("objThis: ", obj.objThis);
     },
 };
+
+car.arrow();
