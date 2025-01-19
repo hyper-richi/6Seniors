@@ -52,7 +52,7 @@ const object2 = {
     },
 };
 
-console.log("Jack" + object2); // true
+console.log("Jack" == object2); // true
 ```
 
 -   obj > 0 // true. Как это сделать?

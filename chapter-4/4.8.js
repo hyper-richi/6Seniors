@@ -39,7 +39,7 @@ const object = {
     },
 };
 
-// console.log("Jack" + object); // true
+console.log("Jack" == object); // true
 // Как сделать, чтобы объект: - был равен определенному числу?
 
 const object2 = {
@@ -83,4 +83,4 @@ const object4 = {
     },
 };
 
-console.log(String(object4 < 0) + String(object4 < 0));
+// console.log(String(object4 < 0) + String(object4 < 0));
