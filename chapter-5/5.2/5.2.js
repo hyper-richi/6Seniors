@@ -1,4 +1,4 @@
-
+// "use strict";
 function parseIntCustom(str) {
     let resultStr = "";
 
@@ -12,3 +12,8 @@ function parseIntCustom(str) {
 
 console.log(parseIntCustom("100456px"));
 console.log(parseInt("100123px"));
+
+let str = "Привет";
+
+str.test = 5;
+console.log(str.test);
