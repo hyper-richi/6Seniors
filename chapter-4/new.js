@@ -1,16 +1,17 @@
 function User(name) {
-    this.name = name;
-    this.isAdmin = false;
+  this.name = name;
+  this.isAdmin = false;
 }
 
 let user = new User("Jack");
-// console.log("user: ", user);
+let user2 = new User;
+console.log("user2: ", user2);
 
 function createUser(name) {
-    return {
-        name,
-        isAdmin: false,
-    };
+  return {
+    name,
+    isAdmin: false,
+  };
 }
 
 let jack = createUser("Jack");
@@ -24,7 +25,7 @@ let linda = createUser("Linda");
 // new.target
 
 function NewUser() {
-    return new.target;
+  return new.target;
 }
 
 //console.log("без new:", NewUser()); // undefined
@@ -34,16 +35,16 @@ function NewUser() {
 // Возврат значения из конструктора, return
 
 function BigUser(name) {
-    this.name = name;
+  this.name = name;
 
-    return { userName: "Godzilla" };
+  return { userName: "Godzilla" };
 }
 
 //console.log("return obj:", new BigUser("John")); // возвращает { userName: 'Godzilla'}
 
 function BigUser2(name) {
-    this.name = name;
-    return;
+  this.name = name;
+  return;
 }
 //console.log("return this:", new BigUser2("John")); // возвращает this
 
@@ -53,15 +54,15 @@ function BigUser3(name) {}
 // Создание методов в конструкторе
 
 function foo() {
-    console.log("foo.this:", this);
+  console.log("foo.this:", this);
 }
 
 function UserWithMethods(name, cb) {
-    this.name = name;
-    this.cb = cb;
-    this.sayHi = function () {
-        console.log("this.sayHi:", this.name);
-    };
+  this.name = name;
+  this.cb = cb;
+  this.sayHi = function () {
+    console.log("this.sayHi:", this.name);
+  };
 }
 
 let johnWithMethods = new UserWithMethods("John", foo);

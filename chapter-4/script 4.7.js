@@ -27,3 +27,5 @@ let localSymbol = Symbol("name");
 //console.log(localSymbol.description); // name
 //console.log("Symbol->String:", String(id)); // Symbol(id)
 //console.log("Symbol->Number:", Number(id)); // TypeError: Cannot convert a Symbol value to a number
+
+
