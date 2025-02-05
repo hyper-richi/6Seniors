@@ -82,7 +82,9 @@ function getSum2() {
 
 function getIdxFirstItem(findValue) {
   for (let i = 0; i < numbersArray.length; i++) {
-    if (numbersArray[i] === findValue) return i;
+    if (numbersArray[i] === findValue) {
+      return i;
+    }
   }
 }
 console.log(numbersArray.indexOf(2));
@@ -90,12 +92,15 @@ console.log(getIdxFirstItem(2));
 
 // 3.2 Проверьте, все ли элементы массива удовлетворяют определенному условию.
 
-function getEveryCondition(condition) {
+function getEveryCondition(findValue) {
+  let flag = false;
+
   for (let i = 0; i < numbersArray.length; i++) {
-    if (numbersArray[i] === findValue) return i;
+    if (numbersArray[i] === findValue) flag = true;
   }
 }
-console.log(getEveryCondition(condition))
+
+console.log(getEveryCondition(2));
 // 3.3 Создайте новый массив, содержащий только элементы, которые удовлетворяют условию.
 
 // 3.4 Найдите первый элемент массива, который удовлетворяет условию.
