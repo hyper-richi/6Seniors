@@ -3,7 +3,7 @@
 // this вне функции - в браузере window, "use strict" не влияет
 // Использование this в объектном литерале наследует значение из окружающей области видимости.
 const obj = {
-    this: this,
+  this: this,
 };
 
 const arr = [1, this, 3];
@@ -13,14 +13,14 @@ const arr = [1, this, 3];
 // function declaration - в браузере window, "use strict" undefined
 
 function funcDeclarThis() {
-    console.log("funcDeclarThis:", this); // в браузере window, "use strict" undefined
+  console.log("funcDeclarThis:", this); // в браузере window, "use strict" undefined
 }
 //funcDeclarThis();
 
 // function expression - в браузере window, "use strict" undefined
 
 const funcExpres = function () {
-    console.log("funcExpres:", this); // в браузере window, "use strict" undefined
+  console.log("funcExpres:", this); // в браузере window, "use strict" undefined
 };
 //funcExpres();
 
@@ -31,35 +31,40 @@ const funcExpres = function () {
 // Outer Environment Reference  - позволяет функции доступ к переменным, определённым во внешних областях видимости
 
 const arrow = (name) => {
-    console.log(`arrowThis-${name}`, this); // в браузере window, "use strict" не влияет
+  console.log(`arrowThis-${name}`, this); // в браузере window, "use strict" не влияет
 };
 //arrow("global");
 
 const car = {
-    marka: "BMW",
-    model: "M6",
-    year: 2020,
-    color: "white",
-    obj: {
-        objThis: this, // window
-    },
-    getThisGetter() {
-        // console.log("this", this);
-        // return () => this;
-        const obj = {
-            objThis: this, // car
-        };
-        console.log("objThis: ", obj.objThis);
+  marka: "BMW",
+  model: "M6",
+  year: 2020,
+  color: "white",
+  obj: {
+    objThis: this, // window
+  },
+  getThisGetter() {
+    console.log("getThisGetter-this", this);
+    // return () => this;
+    const obj = {
+      objThis: this, // car
+    };
+    console.log("objThis: ", obj.objThis);
 
-        const arrow = () => this;
-        // return arrow;
-    },
-    arrow: () => {
-        const obj = {
-            objThis: this, // window
-        };
-        console.log("objThis: ", obj.objThis);
-    },
+    const arrow = () => {
+      console.log("arrow-this", this);
+    };
+    arrow();
+    // return arrow;
+  },
+  arrow: () => {
+    const obj = {
+      objThis: this, // window
+    };
+    console.log("objThis: ", obj.objThis); // window
+  },
 };
 
 car.arrow();
+car.getThisGetter();
+
