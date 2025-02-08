@@ -12,7 +12,13 @@ numbersArray.filter(function (item) {
 numbersArray["02"] = "02";
 numbersArray["12"] = 12;
 numbersArray[-1] = -1;
+console.log("numbersArray[-1]: ", numbersArray[-1]);
+console.log("numbersArray[02]: ", numbersArray["02"]);
 console.log("numbersArray: ", numbersArray);
+
+for (let value of numbersArray) {
+  console.log("not iterable index", value);
+}
 
 numbersArray[Symbol.iterator] = function () {
   const properties = Object.keys(this);
@@ -29,7 +35,7 @@ numbersArray[Symbol.iterator] = function () {
 };
 
 for (let value of numbersArray) {
-  console.log(value);
+  console.log('with iterator',value);
 }
 
 // valueOf toString
