@@ -79,23 +79,32 @@ person[Symbol.iterator] = function () {
   };
 };
 
-console.log("person", person);
+// console.log("person", person);
 
-const symbolsPerson = Object.getOwnPropertySymbols(person); // посмотреть наличие Symbols
-console.log("symbolsPerson: ", symbolsPerson);
+// const symbolsPerson = Object.getOwnPropertySymbols(person); // посмотреть наличие Symbols
+// console.log("symbolsPerson: ", symbolsPerson);
 
-const symbolsNumbersArray = Object.getOwnPropertySymbols(numbersArray); // посмотреть наличие Symbols
-console.log("symbolsNumbersArray: ", symbolsNumbersArray);
+// const symbolsNumbersArray = Object.getOwnPropertySymbols(numbersArray); // посмотреть наличие Symbols
+// console.log("symbolsNumbersArray: ", symbolsNumbersArray);
 
 // for (let num of person) {
 //   console.log("for..of", num); // 1, затем 2, 3, 4, 5
 // }
 
-// какие еще методы объекта применимы к итерируемым объектам ?
+// какие еще методы перебора применимы к итерируемым объектам ?
 
 for (let key in person) {
-  console.log("for..in", key); // 1, затем 2, 3, 4, 5
+  // console.log("for..in", key); // 1, затем 2, 3, 4, 5
 }
+
+const arrayLike = {
+  0: "a",
+  1: "b",
+  length: 2,
+};
+console.log("arrayLike: ", Array.prototype.join.call(arrayLike, "-")); // 'a-b'
+
+console.log(Array.prototype.join.call(arrayLike, "+")); // 'a+b'
 
 // Array.from
 
