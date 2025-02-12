@@ -1,6 +1,5 @@
 // "use strict";
 
-// Чтобы объект был итерируемым, у него должен быть ключ [Symbol.iterator]
 
 const person = {
   name: "Mark",
