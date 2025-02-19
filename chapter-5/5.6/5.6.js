@@ -1,10 +1,8 @@
 // "use strict";
 
-
 const person = {
   name: "Mark",
   age: 30,
-  gender: "male",
   interests: ["music", "fishing"],
 };
 
@@ -14,7 +12,7 @@ person[Symbol.iterator] = function () {
   // 2. Далее, for..of работает только с этим итератором,
   // запрашивая у него новые значения
   const properties = Object.keys(this);
-  console.log("properties: ", properties);
+  // [ 'name', 'age', 'interests' ]
   let count = 0;
 
   return {
@@ -22,24 +20,29 @@ person[Symbol.iterator] = function () {
 
     next() {
       // 4. он должен вернуть значение в виде объекта {done:.., value :...}
-
-      let result = { done: !(count < properties.length), value: person[properties[count++]] };
-
-      return result;
+      if (count < properties.length) {
+        const res = { done: false, value: person[properties[count]] };
+        count++;
+        return res;
+      } else {
+        return { done: true, value: count };
+      }
     },
   };
 };
 
-for (let value of person) {
-  console.log("value", value); //
-}
+// теперь работает!
+// for (let num of person) {
+//   console.log(num); // Mark, 30, male, [ 'music', 'fishing' ]
+// }
 
 // Array.from
-
+// prettier-ignore
 let arrayLike = {
   0: "Hello",
   1: "World",
-  length: 2,
+  'n': "Fuck up",
+  length: 3,
 };
 
 let arrayLike2 = {
@@ -48,21 +51,11 @@ let arrayLike2 = {
 };
 
 // for (let value of arrayLike) {
-//   console.log("value", value); // TypeError: arrayLike is not iterable
+//    console.log("arrayLike value:", value); // TypeError: arrayLike is not iterable
 // }
 
-let arr = Array.from(arrayLike2); // (*)
+let arr = Array.from(arrayLike); // (*)
 console.log("arr", arr); // [ 'Hello', 'World' ]
 for (let value of arr) {
   console.log(value); // Hello,World
 }
-
-const person2 = {
-  name: "Mark",
-  age: 30,
-  gender: "male",
-  interests: ["music", "fishing"],
-};
-
-const arrPerson = Array.from(person);
-console.log("arrPerson: ", arrPerson); // []
