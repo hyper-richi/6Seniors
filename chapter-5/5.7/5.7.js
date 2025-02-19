@@ -17,12 +17,16 @@ person.name = "Jonathan";
 // console.log("person: ", person); // здесь есть св-во 'some'
 
 const contacts = new Map();
-console.log("contacts: ", contacts); // здесь уже есть св-во 'Jessie'
 
 contacts.set("Jessie", { phone: "213-555-1234", address: "123 N 1st Ave" });
 contacts.set("1", "Значение под строковым ключом 1");
 contacts.set(2, "Значение под числовым ключом 2");
 contacts.set(true, "Значение под булевым ключом true");
+
+contacts[123] = 123;
+contacts.value = "value";
+console.log("contacts.value: ", contacts.value);
+console.log("contacts[123]: ", contacts[123]);
 
 // прочитать значение Map
 
@@ -33,14 +37,14 @@ contacts.set(true, "Значение под булевым ключом true");
 
 // for of
 
-// for (let key of contacts) {
-//    console.log("for..of", key); // [ 'Jessie', { phone: '213-555-1234', address: '123 N 1st Ave' } ]
-// }
+for (let value of contacts) {
+  console.log("for..of", value); // [ 'Jessie', { phone: '213-555-1234', address: '123 N 1st Ave' } ]
+}
 
 // for in не срабатывает
 
-// for (let [prop, value] in contacts) {
-//    console.log("for in:", prop, value);
+// for (let key in contacts) {
+//   console.log("for in:", key);
 // }
 
 // contacts.forEach((value, key, map) => {
@@ -96,32 +100,3 @@ contacts.set(true, "Значение под булевым ключом true");
 // for (let [key, value] of mapEntries) {
 //    console.log("for..of", `${key}:`, `${value}`);
 // }
-
-// Задача
-
-// есть ли в массиве 2 числа сумма которых равна искомому
-const nums = [10, 17, 7, 15, 2, 59, 36, 7];
-
-/**
- * Checks if there are any two numbers in the given array whose sum equals the specified target sum.
- *
- * @param {number[]} arr - The array of numbers to check.
- * @param {number} sum - The target sum to find within the array.
- * @returns {boolean} - Returns true if two numbers that add up to the target sum are found, otherwise false.
- */
-
-const foo = (arr, sum) => {
-  const seen = {};
-  for (const num of arr) {
-    const complement = sum - num;
-    if (seen[complement]) {
-      console.log(seen);
-      console.log(`Эврика! ${complement} + ${num} = ${sum}`);
-      return true;
-    }
-    seen[num] = true;
-  }
-  return false;
-};
-
-foo(nums, 17);
