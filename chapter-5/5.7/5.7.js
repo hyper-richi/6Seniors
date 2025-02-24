@@ -7,6 +7,13 @@ const person = {
   interests: ["music", "fishing"],
 };
 
+const entries = [
+  ["key1", "value1"],
+  ["key2", "value2"],
+];
+
+const objEntries = Object.fromEntries(entries);
+
 const contacts = new Map();
 
 // установить значения Map
@@ -89,13 +96,15 @@ const obj = { a: 1, b: 2, c: 3 };
 const map = new Map(Object.entries(obj));
 
 // Object.fromEntries: Object из Map
-// создать из Map -> object
+// создать из Map -> Object
 
 const obj2 = Object.fromEntries(map);
 // console.log(obj2);
 
+// Set
+
 const mySet = new Set([1, 2, "Jessie", true, 1, { a: 1 }, { a: 1 }]);
-console.log("mySet: ", mySet); // { 1, 2, 'Jessie', true, { a: 1 }, { a: 1 } }
+// console.log("mySet: ", mySet); // { 1, 2, 'Jessie', true, { a: 1 }, { a: 1 } }
 
 // кол-во элементов
 mySet.size; // 3
@@ -104,7 +113,7 @@ mySet.size; // 3
 
 // mySet.clear();
 
-// проверка наличия лемента
+// проверка наличия элемента
 
 mySet.has(1); // true
 
@@ -112,7 +121,7 @@ mySet.has(1); // true
 
 mySet.delete(2); // true если удалилось, false если нет значения
 
-// добавить знаечние
+// добавить значение
 
 mySet.add(2); // возвращает тот же объект set
 
@@ -134,10 +143,33 @@ const arrValues = mySet.entries(); // [ value,value ] {  [ 1, 1 ],  [ 'Jessie', 
 
 // Задачи
 
-//1
+// Ожидаемый результат:
+// [{ id: 1, name: "Alice" }]
 
-const arr = [1, 2, 2, 3, 4, 4, 5];
+const users = [
+  { id: 0, name: "Alice0" },
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 2, name: "Bob2" },
+  { id: 1, name: "Alice2" },
+  { id: 1, name: "Alice3" },
+  { id: 3, name: "Charlie" },
+  { id: 3, name: "Charlie3" },
+];
 
-function isUniqueArray(){
-  return 
+function dublicate() {
+  const unique = new Map();
+  const dublicate = new Map();
+
+  for (let item of users) {
+    if (dublicate.has(item.id)) {
+      continue;
+    } else {
+      unique.has(item.id) ? dublicate.set(item.id, item) : unique.set(item.id, item);
+    }
+  }
+
+  return [...dublicate.values()];
 }
+
+console.log("dublicate: ", dublicate());
