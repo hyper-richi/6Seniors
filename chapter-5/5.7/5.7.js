@@ -142,34 +142,18 @@ const keys = mySet.keys(); // [Set Iterator] { 1, 'Jessie', true, { a: 1 }, { a:
 const arrValues = mySet.entries(); // [ value,value ] {  [ 1, 1 ],  [ 'Jessie', 'Jessie' ],  [ true, true ],  [ { a: 1 }, { a: 1 } ],  [ { a: 1 }, { a: 1 } ],  [ 2, 2 ] }
 
 // Задачи
+const userA = { id: 1, name: "John" };
+const userB = { id: 2, name: "Jane" };
 
-// Ожидаемый результат:
-// [{ id: 1, name: "Alice" }]
+function trackUsers(user) {
+  let wSet = new WeakSet();
+  const hasUser = wSet.has(user);
 
-const users = [
-  { id: 0, name: "Alice0" },
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 2, name: "Bob2" },
-  { id: 1, name: "Alice2" },
-  { id: 1, name: "Alice3" },
-  { id: 3, name: "Charlie" },
-  { id: 3, name: "Charlie3" },
-];
+  if (!hasUser) wSet.add(user);
 
-function dublicate() {
-  const unique = new Map();
-  const dublicate = new Map();
-
-  for (let item of users) {
-    if (dublicate.has(item.id)) {
-      continue;
-    } else {
-      unique.has(item.id) ? dublicate.set(item.id, item) : unique.set(item.id, item);
-    }
-  }
-
-  return [...dublicate.values()];
+  return hasUser ? true : false;
 }
 
-console.log("dublicate: ", dublicate());
+console.log("trackUsers: ", trackUsers(userA));
+console.log("trackUsers: ", trackUsers(userB));
+console.log("trackUsers: ", trackUsers(userB));
