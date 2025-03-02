@@ -170,3 +170,10 @@ console.log("size", myMap.size);
 //console.log("myWeakMap", myWeakMap);
 
 console.log("Main job ends");
+
+const fooObj = { name: "John", age: 155, grade: "senior", obj: { a: 1, b: 2 } };
+
+function foo({ grade,obj }) {
+  console.log(grade, obj);
+}
+foo(fooObj);
