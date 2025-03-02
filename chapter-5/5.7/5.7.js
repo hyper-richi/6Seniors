@@ -2,7 +2,7 @@
 
 const person = {
   name: "Mark",
-  age: 30,
+  level: 30,
   gender: "male",
   interests: ["music", "fishing"],
 };
@@ -171,9 +171,21 @@ console.log("size", myMap.size);
 
 console.log("Main job ends");
 
-const fooObj = { name: "John", age: 155, grade: "senior", obj: { a: 1, b: 2 } };
+// destructor
 
-function foo({ grade,obj }) {
-  console.log(grade, obj);
-}
-foo(fooObj);
+const myMapDstr = new Map();
+myMapDstr.set("Jessie", { phone: "213-555-1234", address: "123 N 1st Ave" });
+myMapDstr.set("1", "Значение под строковым ключом 1");
+myMapDstr.set(2, "Значение под числовым ключом 2");
+myMapDstr.set(true, "Значение под булевым ключом true");
+
+// const [[name, { phone, address }]] = myMapDstr;
+// console.log("address: ", address);
+// console.log("phone: ", phone);
+// console.log("name: ", name);
+
+const mySetDstr = new Set();
+mySetDstr.add("Jessie");
+mySetDstr.add({ phone: "213-555-1234", address: "123 N 1st Ave" });
+
+const [first, { phone, address }] = mySetDstr;
