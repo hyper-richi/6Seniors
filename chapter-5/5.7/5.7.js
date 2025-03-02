@@ -142,18 +142,31 @@ const keys = mySet.keys(); // [Set Iterator] { 1, 'Jessie', true, { a: 1 }, { a:
 const arrValues = mySet.entries(); // [ value,value ] {  [ 1, 1 ],  [ 'Jessie', 'Jessie' ],  [ true, true ],  [ { a: 1 }, { a: 1 } ],  [ { a: 1 }, { a: 1 } ],  [ 2, 2 ] }
 
 // Задачи
-const userA = { id: 1, name: "John" };
-const userB = { id: 2, name: "Jane" };
 
-function trackUsers(user) {
-  let wSet = new WeakSet();
-  const hasUser = wSet.has(user);
+let someObj = { a: 1, b: 2, data: Array.from({ length: 15000 }, () => () => {}) };
 
-  if (!hasUser) wSet.add(user);
+const bigStr = "string".repeat(100);
 
-  return hasUser ? true : false;
-}
+//const myWeakMap = new WeakMap();
+const myMap = new Map();
+const myWeakMap = new WeakMap();
+console.log("size", myMap.size);
 
-console.log("trackUsers: ", trackUsers(userA));
-console.log("trackUsers: ", trackUsers(userB));
-console.log("trackUsers: ", trackUsers(userB));
+// myMap.set(someObj, bigStr);
+myWeakMap.set(someObj, bigStr);
+
+console.log("1", performance.memory);
+
+const registry = new FinalizationRegistry(() => {
+  console.log(`Array gets garbage collected`);
+  console.log("2", performance.memory);
+});
+
+registry.register(someObj, someObj.data);
+
+someObj = null;
+
+console.log("size", myMap.size);
+//console.log("myWeakMap", myWeakMap);
+
+console.log("Main job ends");
