@@ -17,4 +17,11 @@ const arr = [10, 20, 30];
 // Попытка деструктурировать массив как объект
 const { 0: first, 1: second } = arr;
 
-console.log(first, second); // 10, 20
+const myWeakMap = new WeakMap();
+const keyObj = { id: 1 };
+
+myWeakMap.set(keyObj, "data");
+
+// Попытка сериализации
+const serializedWeakMap = JSON.stringify(myWeakMap); // пустой объект
+console.log("serializedWeakMap: ", serializedWeakMap);
