@@ -36,11 +36,11 @@ const registryFoo = new FinalizationRegistry(() => {
 registryFoo.register(foo, "foo");
 
 const baz = foo();
-console.dir("baz: ", baz);
+// console.dir("baz: ", baz);
 foo = null;
 
-baz(); // 2
-baz(); // 3
+// baz(); // 2
+// baz(); // 3
 
 /********************************************/
 
@@ -49,60 +49,62 @@ const btn = document.getElementById("my_button");
 btn?.addEventListener("click", function click(evt) {
   console.log("button clicked");
   // counter();
-  makeGlobalCounter();
+  changeGlobalCounter();
 });
 
 let globalCounter = 0;
 
-function createCounter(argCount = 0) {
-  let outerCounter = 0;
-  let outerGlobalCounter = globalCounter;
+// function createCounter(argCount = 0) {
+//   let outerCounter = 0;
+//   let outerGlobalCounter = globalCounter;
 
-  return function closureCount() {
-    let innerCount = 0;
-    console.log("outerGlobalCounter: ", outerGlobalCounter);
+//   return function closureCount() {
+//     let innerCount = 0;
+//     console.log("outerGlobalCounter: ", outerGlobalCounter);
 
-    argCount++;
-    console.log("argCount: ", argCount);
-    globalCounter++;
-    console.log("globalCounter: ", globalCounter);
-    outerCounter++;
-    console.log("outerCounter: ", outerCounter);
-    innerCount++;
-    console.log("innerCount: ", innerCount);
-  };
-}
+//     argCount++;
+//     console.log("argCount: ", argCount);
+//     globalCounter++;
+//     console.log("globalCounter: ", globalCounter);
+//     outerCounter++;
+//     console.log("outerCounter: ", outerCounter);
+//     innerCount++;
+//     console.log("innerCount: ", innerCount);
+//   };
+// }
 // const counter = createCounter();
 
 // console.dir(counter);
 // console.dir(createCounter)
 // counter();
 
-function makeGlobalCounter() {
-  console.log("makeGlobalCounter: ");
-  globalCounter++;
-  // counter();
-  const counter2 = createCounter();
-  console.dir(counter);
-  console.log("counter2");
-  console.dir(counter2);
-}
+// function changeGlobalCounter() {
+//   console.log("changeGlobalCounter: ");
+//   globalCounter++;
+//   // counter();
+//   const counter2 = createCounter();
+//   console.dir(counter);
+//   console.log("counter2");
+//   console.dir(counter2);
+// }
 
-function createTimer(timeInSec) {
-  let timer = timeInSec;
+// for (var i = 0; i < 3; i++) {
+//   function log() {
+//     console.log(i); // What is logged?
+//   }
+//   console.dir(log);
+//     setTimeout(function outerLog() {
+//     console.log("outerLog", i); // What is logged?
+//     return log;
+//   }, 1000);
 
-  return function () {
-    let timerId = setInterval(() => {
-      console.log(timer);
-      --timer;
-      if (timer === 0) {
-       // clearInterval(timerId);
-        console.log("Time's up!");
-      }
-    }, 1000);
-  };
-}
+//   log();
+// }
 
-const timerStart = createTimer(10);
-timerStart();
+var x = 10;
 
+// Современное объявление переменной, используя `let`.
+let y = 20;
+
+console.log(window.y); // undefined
+console.log(window.x); // 10
