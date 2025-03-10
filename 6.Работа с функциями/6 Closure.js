@@ -44,13 +44,13 @@ foo = null;
 
 /********************************************/
 
-const btn = document.getElementById("my_button");
+// const btn = document.getElementById("my_button");
 
-btn?.addEventListener("click", function click(evt) {
-  console.log("button clicked");
-  // counter();
-  changeGlobalCounter();
-});
+// btn?.addEventListener("click", function click(evt) {
+//   console.log("button clicked");
+//   // counter();
+//   changeGlobalCounter();
+// });
 
 let globalCounter = 0;
 
@@ -100,11 +100,23 @@ let globalCounter = 0;
 
 //   log();
 // }
+function sumConsecutive(count) {
+  function firstCount(n) {
+    return n;
+  }
 
-var x = 10;
+  function secCount(n) {
+    return n;
+  }
 
-// Современное объявление переменной, используя `let`.
-let y = 20;
+  return sumConsecutive(count) + sumConsecutive(count + 1); // 5 +
+}
 
-console.log(window.y); // undefined
-console.log(window.x); // 10
+function nextCount(n) {
+  return n + 1;
+}
+
+function sumConsecutive(n) {
+  return n + nextCount(n);
+}
+console.log(sumConsecutive(5));
