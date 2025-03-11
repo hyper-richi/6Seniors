@@ -2,7 +2,7 @@
 
 function process(data) {
   // делаем что-то интересное
-  console.log("process");
+  // console.log("process");
 }
 
 const registry = new FinalizationRegistry(() => {
@@ -100,17 +100,6 @@ let globalCounter = 0;
 
 //   log();
 // }
-function sumConsecutive(count) {
-  function firstCount(n) {
-    return n;
-  }
-
-  function secCount(n) {
-    return n;
-  }
-
-  return sumConsecutive(count) + sumConsecutive(count + 1); // 5 +
-}
 
 function nextCount(n) {
   return n + 1;
@@ -119,4 +108,40 @@ function nextCount(n) {
 function sumConsecutive(n) {
   return n + nextCount(n);
 }
-console.log(sumConsecutive(5));
+// console.log(sumConsecutive(5));
+
+function nextItem(arr, findItem, idx) {
+  if (idx >= arr.length) return false;
+
+  if (arr[idx] === findItem) return true;
+
+  return contains(arr, findItem, idx + 1);
+}
+
+function contains(arr, findItem, idx = 0) {
+  if (idx >= arr.length) return false;
+
+  if (arr[idx] === findItem) return true;
+
+  return nextItem(arr, findItem, idx + 1);
+}
+
+// console.log(contains([1, 2, 3, 5, 6, 7], 4));
+
+function printReverse(num) {
+  if (num === 0) return;
+  console.log(num);
+  return printReverse(num - 1);
+}
+// printReverse(5);
+
+function reverseString(str, idx = 0, revertStr = "") {
+  revertStr += str[str.length - 1 - idx];
+
+  if (idx >= str.length - 1) return revertStr;
+
+  return reverseString(str, idx + 1, revertStr);
+}
+
+console.log(reverseString("hello")); // olleh
+console.log(reverseString("live")); // evil
