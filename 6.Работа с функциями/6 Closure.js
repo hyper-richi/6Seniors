@@ -5,39 +5,42 @@ function process(data) {
   // console.log("process");
 }
 
-const registry = new FinalizationRegistry(() => {
-  // console.log(`gets garbage collected`, window);
-});
+// const registry = new FinalizationRegistry(() => {
+//   // console.log(`gets garbage collected`, window);
+// });
 // для очистки памяти {}
 {
   const someObj = { a: 1, b: 2, str: "string" };
 
-  registry.register(someObj, someObj.data);
+  // registry.register(someObj, someObj.data);
 
   process(someObj);
 }
 
 /********************************************/
-
-function foo() {
+function outer() {
   let a = 2;
+  function foo() {
+    let b = "b in foo";
+    function bar() {
+      console.log(a++, b);
+    }
 
-  function bar() {
-    console.log(a++);
+    return bar;
   }
-
-  return bar;
+  return foo();
 }
 
-const registryFoo = new FinalizationRegistry(() => {
-  // console.log(`garbage collected foo`, window);
-});
+// const registryFoo = new FinalizationRegistry(() => {
+//   // console.log(`garbage collected foo`, window);
+// });
 
-registryFoo.register(foo, "foo");
+// registryFoo.register(foo, "foo");
 
-const baz = foo();
-// console.dir("baz: ", baz);
-foo = null;
+// const bar = outer();
+// console.dir(outer);
+// console.dir(bar);
+// foo = null;
 
 // baz(); // 2
 // baz(); // 3
@@ -101,47 +104,20 @@ let globalCounter = 0;
 //   log();
 // }
 
-function nextCount(n) {
-  return n + 1;
+let value = "Сюрприз!";
+
+function f() {
+  let value = "ближайшее значение";
+
+  function g() {
+    value;
+    debugger; // в консоли: напишите alert(value); Сюрприз!
+  }
+
+  return g;
 }
 
-function sumConsecutive(n) {
-  return n + nextCount(n);
-}
-// console.log(sumConsecutive(5));
-
-function nextItem(arr, findItem, idx) {
-  if (idx >= arr.length) return false;
-
-  if (arr[idx] === findItem) return true;
-
-  return contains(arr, findItem, idx + 1);
-}
-
-function contains(arr, findItem, idx = 0) {
-  if (idx >= arr.length) return false;
-
-  if (arr[idx] === findItem) return true;
-
-  return nextItem(arr, findItem, idx + 1);
-}
-
-// console.log(contains([1, 2, 3, 5, 6, 7], 4));
-
-function printReverse(num) {
-  if (num === 0) return;
-  console.log(num);
-  return printReverse(num - 1);
-}
-// printReverse(5);
-
-function reverseString(str, idx = 0, revertStr = "") {
-  revertStr += str[str.length - 1 - idx];
-
-  if (idx >= str.length - 1) return revertStr;
-
-  return reverseString(str, idx + 1, revertStr);
-}
-
-console.log(reverseString("hello")); // olleh
-console.log(reverseString("live")); // evil
+let g = f();
+g();
+console.dir(g);
+console.dir(f);
