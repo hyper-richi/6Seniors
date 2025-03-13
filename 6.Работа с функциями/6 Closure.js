@@ -105,19 +105,35 @@ let globalCounter = 0;
 // }
 
 let value = "Сюрприз!";
-
-function f() {
+const globalVal = "globalVal";
+export function f() {
   let value = "ближайшее значение";
-
+  globalVal;
   function g() {
     value;
-    debugger; // в консоли: напишите alert(value); Сюрприз!
+    // debugger; // в консоли: напишите alert(value); Сюрприз!
   }
+  console.dir(g);
 
   return g;
 }
-
-let g = f();
-g();
-console.dir(g);
 console.dir(f);
+
+export let g = f();
+
+// g();
+
+function countTheNumber() {
+  var arrToStore = [];
+  let x = 0;
+  for (; x < 9; x++) {
+    arrToStore[x] = function () {
+      return x;
+    };
+  }
+  return arrToStore;
+}
+
+const callInnerFunctions = countTheNumber();
+console.log(callInnerFunctions[0]()); // ?
+console.log(callInnerFunctions[1]()); // ?

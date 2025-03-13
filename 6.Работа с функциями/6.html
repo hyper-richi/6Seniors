@@ -13,6 +13,11 @@
   <body>
     <h2></h2>
     <button id="my_button">my_button</button>
-    <script src="6 Closure.js" defer></script>
+    <script type="module" src="6 Closure.js" defer></script>
+    <script type="module">
+      import { f, g } from "./6 Closure.js";
+      console.dir(f);
+      console.dir(g);
+    </script>
   </body>
 </html>
