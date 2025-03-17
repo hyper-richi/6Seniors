@@ -106,7 +106,7 @@ let globalCounter = 0;
 
 let value = "Сюрприз!";
 const globalVal = "globalVal";
-export function f() {
+function f() {
   let value = "ближайшее значение";
   globalVal;
   function g() {
@@ -117,9 +117,9 @@ export function f() {
 
   return g;
 }
-console.dir(f);
+// console.dir(f);
 
-export let g = f();
+let g = f();
 
 // g();
 
@@ -135,5 +135,23 @@ function countTheNumber() {
 }
 
 const callInnerFunctions = countTheNumber();
-console.log(callInnerFunctions[0]()); // ?
-console.log(callInnerFunctions[1]()); // ?
+// console.log(callInnerFunctions[0]()); // ?
+// console.log(callInnerFunctions[1]()); // ?
+
+function createIncrement() {
+  let count = 0;
+  function increment() {
+    count++;
+  }
+  let message = `Count is ${count}`;
+  function log() {
+    console.log(`Count is ${count}`, count);
+  }
+  return [increment, log];
+}
+
+const [increment, log] = createIncrement();
+increment();
+increment();
+increment();
+log(); // Что выведется в консоль?
