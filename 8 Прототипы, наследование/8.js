@@ -1,59 +1,90 @@
-let person = {
-  name: "John",
-  age: 30,
+function sayHello() {}
+
+function whatTheFuck() {}
+
+Function.prototype.logName = function () {
+  console.log(this.name);
 };
 
-function Rabbit() {}
-// console.dir(Rabbit);
+// sayHello.logName(); // Должно вывести "sayHello"
+// whatTheFuck.logName(); // Должно вывести "whatTheFuck"
 
-// Array.prototype.duplicate = function () {
-//   console.log("duplicate", this);
-//   return [...this, ...this];
-// };
-
-// const arr = [1, 2, 3];
-// console.log("arr: ", arr);
-
-function Obj(name) {
-  this.name = name;
-}
-// console.dir(Obj.constructor);
-
-let obj = new Obj("White Rabbit");
-
-let obj2 = new obj.constructor("Mr. White");
-
-function Person(name, age) {
-  console.log("Person");
-  this.name = name;
-  this.age = age;
-}
-
-Person.prototype.greet = function () {
-  console.log(`"Hello, my name is ${this.name} and I am ${this.age} years old."`);
+Function.prototype.myBind = function (obj) {
+  const originalFunction = this;
+  return function () {
+    return originalFunction.apply(obj);
+  };
 };
 
-function Student(name, age) {
-  console.log("Student: ");
-  this.name = name;
-  this.age = age;
+function logMessage() {
+  console.log(this.message);
 }
 
-Student.prototype = new Person("Jack", 123);
-Student.prototype.constructor = Student;
+const userMessage = { message: "Hello, world!" };
+const clientMessage = { message: "Give mee Iphone" };
 
-Student.prototype.study = function () {
-  console.log(`"${name} is studying."`);
+const boundUserMessage = logMessage.myBind(userMessage);
+const boundClientMessage = logMessage.myBind(clientMessage);
+// boundUserMessage(); // "Hello, world!"
+// boundClientMessage(); // Give mee Iphone
+
+function sayHi() {
+  console.log("Hi!");
+}
+
+Function.prototype.delay = function (time) {
+  setTimeout(this, time);
 };
 
-const student = new Student("Bob", 21);
-const mary = new Person("Mary", 23);
+// sayHi.delay(2000); // Выведет "Hi!" через 2 секунды
 
-mary.greet();
-console.log("mary: ", mary);
-console.log("student: ", student);
-console.dir(Person);
-console.dir(Student);
+function greet() {
+  console.log("Hello!");
+}
 
-student.greet();
-student.study();
+Function.prototype.once = function () {
+  const func = this;
+  let wasCall = false;
+
+  return function () {
+    if (wasCall) {
+      console.log("no call");
+      return;
+    } else {
+      func();
+      wasCall = true;
+    }
+  };
+};
+
+const greetOnce = greet.once();
+// greetOnce(); // Выведет "Hello!"
+// greetOnce(); // no call
+// greetOnce(); // no call
+
+function showMessage() {
+  console.log("Message displayed!");
+}
+
+Function.prototype.after = function (countCalls) {
+  let count = 0;
+  const func = this;
+
+  return function () {
+    count++;
+
+    if (count < countCalls) {
+      console.log("no call");
+      return;
+    } else {
+      func();
+    }
+  };
+};
+
+const showAfter3Calls = showMessage.after(3);
+
+showAfter3Calls(); // Ничего не происходит
+showAfter3Calls(); // Ничего не происходит
+showAfter3Calls(); // "Message displayed!"
+showAfter3Calls(); // "Message displayed!" (выполняется и далее)
