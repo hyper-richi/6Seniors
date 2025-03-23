@@ -1,90 +1,60 @@
-function sayHello() {}
-
-function whatTheFuck() {}
-
-Function.prototype.logName = function () {
-  console.log(this.name);
+const animal = {
+  eats: true,
 };
 
-// sayHello.logName(); // Должно вывести "sayHello"
-// whatTheFuck.logName(); // Должно вывести "whatTheFuck"
+const dog = {
+  jumps: true,
+};
 
-Function.prototype.myBind = function (obj) {
-  const originalFunction = this;
-  return function () {
-    return originalFunction.apply(obj);
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.print = function () {
+    console.log(`Name: ${this.name}  Age: ${this.age}`);
   };
-};
-
-function logMessage() {
-  console.log(this.message);
 }
 
-const userMessage = { message: "Hello, world!" };
-const clientMessage = { message: "Give mee Iphone" };
+// Создание объектов через конструктор
+const tom = new Person("Tom", 29);
+console.log("Person: ", Person);
+console.dir(Person);
 
-const boundUserMessage = logMessage.myBind(userMessage);
-const boundClientMessage = logMessage.myBind(clientMessage);
-// boundUserMessage(); // "Hello, world!"
-// boundClientMessage(); // Give mee Iphone
+// Добавление метода в прототип ф-ии конструктора
 
-function sayHi() {
-  console.log("Hi!");
-}
-
-Function.prototype.delay = function (time) {
-  setTimeout(this, time);
+Person.prototype.log = function (arg) {
+  console.log(arg);
 };
 
-// sayHi.delay(2000); // Выведет "Hi!" через 2 секунды
+// Цепочка прототипов
+// поиск св-в объекта происходит вверх по цепочке прототипа
 
-function greet() {
-  console.log("Hello!");
+// Наследование
+// объекты могут наследовать св-ва и методы от других объектов через св- прототип объекта
+
+// Методы в прототипе
+// методы в прототипе яв-ся общими для всех экземпляров объекта
+
+// Проверка наличия свойства или метода
+console.log("name" in tom); // true
+console.log("log" in tom); // true
+console.log(tom.hasOwnProperty("log")); // false
+console.log(tom.hasOwnProperty("name")); // true
+
+// Модификация встроенных прототипов
+// добавление в прототипы глобальных объектов новых методов
+
+Array.prototype.myMap = function (){
+  
 }
 
-Function.prototype.once = function () {
-  const func = this;
-  let wasCall = false;
+// Использование Object.create
+// разницу между свойствами __proto__ (или [[Prototype]]) и prototype
+// __proto__ сво-во для объектов, prototype св-во для функций
+// Перезапись прототипа
+// Удаление свойств из прототипа
+// посмотреть прототип объекта
 
-  return function () {
-    if (wasCall) {
-      console.log("no call");
-      return;
-    } else {
-      func();
-      wasCall = true;
-    }
-  };
-};
+// console.log(animal.__proto__);
+// console.log(Object.getPrototypeOf(animal));
 
-const greetOnce = greet.once();
-// greetOnce(); // Выведет "Hello!"
-// greetOnce(); // no call
-// greetOnce(); // no call
-
-function showMessage() {
-  console.log("Message displayed!");
-}
-
-Function.prototype.after = function (countCalls) {
-  let count = 0;
-  const func = this;
-
-  return function () {
-    count++;
-
-    if (count < countCalls) {
-      console.log("no call");
-      return;
-    } else {
-      func();
-    }
-  };
-};
-
-const showAfter3Calls = showMessage.after(3);
-
-showAfter3Calls(); // Ничего не происходит
-showAfter3Calls(); // Ничего не происходит
-showAfter3Calls(); // "Message displayed!"
-showAfter3Calls(); // "Message displayed!" (выполняется и далее)
+// вывести прототип ф-ии конструктора
