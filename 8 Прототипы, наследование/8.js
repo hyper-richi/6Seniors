@@ -1,9 +1,18 @@
 const animal = {
   eats: true,
+  jumps() {
+    console.log("jumps");
+  },
 };
 
 const dog = {
-  jumps: true,
+  isRuns: true,
+  runs() {
+    console.log("runs");
+  },
+  map() {
+    console.log("map");
+  },
 };
 
 function Person(name, age) {
@@ -13,14 +22,12 @@ function Person(name, age) {
     console.log(`Name: ${this.name}  Age: ${this.age}`);
   };
 }
+console.dir(Person);
 
 // Создание объектов через конструктор
 const tom = new Person("Tom", 29);
-console.log("Person: ", Person);
-console.dir(Person);
 
 // Добавление метода в прототип ф-ии конструктора
-
 Person.prototype.log = function (arg) {
   console.log(arg);
 };
@@ -35,6 +42,7 @@ Person.prototype.log = function (arg) {
 // методы в прототипе яв-ся общими для всех экземпляров объекта
 
 // Проверка наличия свойства или метода
+console.log("tom: ", tom);
 console.log("name" in tom); // true
 console.log("log" in tom); // true
 console.log(tom.hasOwnProperty("log")); // false
@@ -42,19 +50,161 @@ console.log(tom.hasOwnProperty("name")); // true
 
 // Модификация встроенных прототипов
 // добавление в прототипы глобальных объектов новых методов
+Array.prototype.myMap = function (cb) {
+  const arr = [];
 
-Array.prototype.myMap = function (){
-  
-}
+  for (let i = 0; i < this.length; i++) {
+    arr[i] = cb(this[i], i);
+  }
+
+  return arr;
+};
+
+const arr2 = [1, 2, 3].myMap((item, idx) => {
+  return item * 2;
+});
+// console.log("arr2: ", arr2); // [2,4,6]
 
 // Использование Object.create
-// разницу между свойствами __proto__ (или [[Prototype]]) и prototype
-// __proto__ сво-во для объектов, prototype св-во для функций
-// Перезапись прототипа
-// Удаление свойств из прототипа
-// посмотреть прототип объекта
+// создает новый объект устанавливая в его прототип методы и св-ва родительского объекта,
+// 2 аргументом принимает дескрипторы св-в.
+const animalInPrototype = Object.create(animal, {
+  name: {
+    value: "Rex",
+  },
+});
+console.log("animalInPrototype", animalInPrototype);
 
-// console.log(animal.__proto__);
-// console.log(Object.getPrototypeOf(animal));
+// Использование Object.assign
+// копирует собственные перечислимые enumerable св-ва объекта в новый
+// прототипные св-ва не копируются
+console.log(Object.assign({}, animalInPrototype));
+
+// Разница между свойствами __proto__ (или [[Prototype]]) и prototype
+// __proto__ сво-во для объектов, prototype св-во для функций
+
+// Перезапись прототипа
+animalInPrototype.__proto__ = null; // стерт прототип
+Object.setPrototypeOf(animalInPrototype, animal);
+console.log("animalInPrototype: ", animalInPrototype);
+
+// Удаление свойств из прототипа
+delete animalInPrototype.__proto__.eats;
+delete Person.prototype.constructor; // удалит constructor
+
+// посмотреть прототип объекта
+// Object.getPrototypeOf возвращает прототип объекта
+console.log(animal.__proto__);
+const cat = Object.create(animal);
+console.log(animal.isPrototypeOf(cat)); // true
+console.log("getPrototypeOf", Object.getPrototypeOf(cat));
+
+animalInPrototype.__proto__ = Object.create(animal);
+console.log(animal.isPrototypeOf(animalInPrototype)); // true
 
 // вывести прототип ф-ии конструктора
+console.log(Person.prototype);
+console.dir(Person.prototype);
+
+// **Задача 1: Создание метода через `Function.prototype`**
+
+// Добавьте метод `logName` в `Function.prototype`, который будет выводить в консоль имя функции, вызванной этим методом.
+
+function sayHello() {}
+
+function whatTheFuck() {}
+
+Function.prototype.logName = function () {
+  console.log(this.name);
+};
+
+sayHello.logName(); //  sayHello
+whatTheFuck.logName(); //  whatTheFuck
+
+// **Задача 2: Имитация метода `bind`**
+
+// Реализуйте метод `myBind` на `Function.prototype`, который работает аналогично `Function.prototype.bind`.
+
+Function.prototype.myBind = function (obj, ...args) {
+  const originalFunction = this;
+  return function (...args) {
+    return originalFunction.apply(obj, [...args, ...args]);
+  };
+};
+
+function logMessage(greeting) {
+  console.log(`${greeting}, ${this.message}`);
+}
+
+const userMessage = { message: "Hello, world!" };
+const clientMessage = { message: "Give mee Iphone" };
+
+const boundUserMessage = logMessage.myBind(userMessage, "Hi");
+const boundClientMessage = logMessage.myBind(clientMessage, "Please");
+boundUserMessage(); // Hi, Hello, world!
+boundClientMessage(); // Please, Give mee Iphone
+
+// **Задача 3: Добавление метода `delay` к `Function.prototype`**
+
+// Создайте метод `delay` в `Function.prototype`, который позволяет вызвать функцию с задержкой.
+
+Function.prototype.delay = function (time, ...args) {
+  setTimeout(() => this(...args), time);
+};
+
+function sayHi(name) {
+  console.log(`Hi, ${name}!`);
+}
+
+sayHi.delay(2000); // Выведет "Hi!" через 2 секунды
+
+// **Задача 4: Ограничение вызова функции (`once`)**
+
+// Добавьте метод `once` в `Function.prototype`, который гарантирует, что функция будет вызвана только один раз.
+
+Function.prototype.once = function () {
+  const func = this;
+  let wasCall = false;
+
+  return function () {
+    if (wasCall) {
+      console.log("no call");
+      return;
+    } else {
+      func();
+      wasCall = true;
+    }
+  };
+};
+
+const greetOnce = greet.once();
+greetOnce(); // Выведет "Hello!"
+greetOnce(); // no call
+greetOnce(); // no call
+
+// **Задача 5: Метод `after` для выполнения функции после N вызовов**
+
+// Создайте метод `after` в `Function.prototype`, который изменяет функцию так, что она выполнится только после N вызовов.
+
+Function.prototype.after = function (countCalls) {
+  let count = 0;
+  const func = this;
+
+  return function () {
+    count++;
+
+    if (count < countCalls) {
+      console.log("no call");
+      return;
+    } else {
+      func();
+    }
+  };
+};
+
+const showAfter3Calls = showMessage.after(3);
+
+showAfter3Calls(); // Ничего не происходит
+showAfter3Calls(); // Ничего не происходит
+showAfter3Calls(); // "Message displayed!"
+showAfter3Calls(); // "Message displayed!" (выполняется и далее)
