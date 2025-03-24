@@ -1,13 +1,20 @@
-let user = {
+const user = {
   name: "John",
   status: "admin",
-  this: this,
 };
 
-let descriptor = Object.getOwnPropertyDescriptor(user, "name", {
-  this: this,
+const descName = Object.getOwnPropertyDescriptor(user, "name");
+console.log("descName: ", descName);
+
+Object.defineProperty(user, "status", {
+  value: this, // window
+  enumerable: this, // проигнорирует
 });
-console.log("descriptor: ", descriptor);
+
+const decsStatus = Object.getOwnPropertyDescriptor(user, "status");
+
+console.log("decsStatus: ", decsStatus);
+
 // console.log(Object.getOwnPropertyDescriptor(user, "status"));
 
 Object.getOwnPropertyDescriptor(user, "name");
@@ -19,7 +26,7 @@ Object.defineProperty(o, "name", { value: "value" });
 {
   configurable:true
   enumerable:true
-  value:"John"
+  value:"value"
   writable:true
 }
 */
@@ -52,7 +59,7 @@ Object.defineProperty(client, "age", {
   set(value) {
     [this.name, this.surname] = value.split(" ");
   },
-  this: this,
+  // value: this, TypeError: Invalid property descriptor.
 });
 
 console.log("client.age: ", client.age);
