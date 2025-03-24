@@ -155,6 +155,8 @@ Function.prototype.myCall = function (obj, ...args) {
 
   delete obj.func;
 
+  console.log(obj.func); // undefined
+
   return res;
 };
 
@@ -176,6 +178,7 @@ Function.prototype.myApply = function (obj, args = []) {
   const res = obj.func(...args);
 
   delete obj.func;
+  console.log(obj.func); // undefined
 
   return res;
 };
@@ -198,7 +201,7 @@ function sayHi(name) {
   console.log(`Hi, ${name}!`);
 }
 
-sayHi.delay(2000); // Выведет "Hi!" через 2 секунды
+sayHi.delay(2000, "Jack"); // Выведет "Hi, Jack!" через 2 секунды
 
 // **Задача 6: Ограничение вызова функции (`once`)**
 
@@ -210,7 +213,7 @@ Function.prototype.once = function () {
 
   return function () {
     if (wasCall) {
-      console.log("no call");
+      // console.log("no call");
       return;
     } else {
       func();
@@ -226,7 +229,8 @@ greetOnce(); // no call
 
 // **Задача 7: Метод `after` для выполнения функции после N вызовов**
 
-// Создайте метод `after` в `Function.prototype`, который изменяет функцию так, что она выполнится только после N вызовов.
+// Создайте метод `after` в `Function.prototype`, который изменяет функцию так,
+// что она выполнится только после N вызовов.
 
 Function.prototype.after = function (countCalls) {
   let count = 0;
@@ -236,7 +240,7 @@ Function.prototype.after = function (countCalls) {
     count++;
 
     if (count < countCalls) {
-      console.log("no call");
+      // console.log("no call");
       return;
     } else {
       func();
@@ -244,9 +248,14 @@ Function.prototype.after = function (countCalls) {
   };
 };
 
+function showMessage() {
+  console.log("Message");
+}
+
 const showAfter3Calls = showMessage.after(3);
 
 showAfter3Calls(); // Ничего не происходит
 showAfter3Calls(); // Ничего не происходит
-showAfter3Calls(); // "Message displayed!"
-showAfter3Calls(); // "Message displayed!" (выполняется и далее)
+showAfter3Calls(); // "Message"
+showAfter3Calls(); // "Message" (выполняется и далее)
+
