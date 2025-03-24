@@ -125,10 +125,10 @@ whatTheFuck.logName(); //  whatTheFuck
 
 // Реализуйте метод `myBind` на `Function.prototype`, который работает аналогично `Function.prototype.bind`.
 
-Function.prototype.myBind = function (obj, ...args) {
+Function.prototype.myBind = function (obj, ...args1) {
   const originalFunction = this;
-  return function (...args) {
-    return originalFunction.apply(obj, [...args, ...args]);
+  return function (...args2) {
+    return originalFunction.apply(obj, [...args1, ...args2]);
   };
 };
 
@@ -144,7 +144,49 @@ const boundClientMessage = logMessage.myBind(clientMessage, "Please");
 boundUserMessage(); // Hi, Hello, world!
 boundClientMessage(); // Please, Give mee Iphone
 
-// **Задача 3: Добавление метода `delay` к `Function.prototype`**
+// **Задача 3: Имитация метода `call`**
+
+// Реализуйте метод `myCall` на `Function.prototype`, который работает аналогично `Function.prototype.call`.
+
+Function.prototype.myCall = function (obj, ...args) {
+  obj.func = this;
+
+  const res = obj.func(...args);
+
+  delete obj.func;
+
+  return res;
+};
+
+function greet(greeting, punctuation) {
+  return `${greeting}, ${this.name}${punctuation}`;
+}
+
+const alice = { name: "Alice" };
+const jack = { name: "Jack" };
+
+console.log(greet.myCall(alice, "Hello", "!")); // "Hello, Alice!"
+console.log(greet.myCall(jack, "Hi", "!!!")); // "Hi, Jack!!!"
+
+//  **Задача 4: Имитация метода `apply`**
+
+Function.prototype.myApply = function (obj, args = []) {
+  obj.func = this;
+
+  const res = obj.func(...args);
+
+  delete obj.func;
+
+  return res;
+};
+
+function greet(greeting, punctuation) {
+  return `${greeting}, ${this.name}${punctuation}`;
+}
+
+console.log(greet.myApply(alice, ["Hello2", "!"])); // "Hello2, Alice!"
+
+// **Задача 5: Добавление метода `delay` к `Function.prototype`**
 
 // Создайте метод `delay` в `Function.prototype`, который позволяет вызвать функцию с задержкой.
 
@@ -158,7 +200,7 @@ function sayHi(name) {
 
 sayHi.delay(2000); // Выведет "Hi!" через 2 секунды
 
-// **Задача 4: Ограничение вызова функции (`once`)**
+// **Задача 6: Ограничение вызова функции (`once`)**
 
 // Добавьте метод `once` в `Function.prototype`, который гарантирует, что функция будет вызвана только один раз.
 
@@ -182,7 +224,7 @@ greetOnce(); // Выведет "Hello!"
 greetOnce(); // no call
 greetOnce(); // no call
 
-// **Задача 5: Метод `after` для выполнения функции после N вызовов**
+// **Задача 7: Метод `after` для выполнения функции после N вызовов**
 
 // Создайте метод `after` в `Function.prototype`, который изменяет функцию так, что она выполнится только после N вызовов.
 

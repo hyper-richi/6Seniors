@@ -63,3 +63,5 @@ Object.defineProperty(client, "age", {
 });
 
 console.log("client.age: ", client.age);
+
+client.basket = "basket";
