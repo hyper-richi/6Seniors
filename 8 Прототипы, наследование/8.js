@@ -238,6 +238,7 @@ Function.prototype.after = function (countCalls) {
 
   return function () {
     count++;
+    console.log("count: ", count);
 
     if (count < countCalls) {
       // console.log("no call");
@@ -257,5 +258,4 @@ const showAfter3Calls = showMessage.after(3);
 showAfter3Calls(); // Ничего не происходит
 showAfter3Calls(); // Ничего не происходит
 showAfter3Calls(); // "Message"
-showAfter3Calls(); // "Message" (выполняется и далее)
-
+showAfter3Calls(); // "Message"

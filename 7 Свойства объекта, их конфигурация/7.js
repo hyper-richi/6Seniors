@@ -65,3 +65,11 @@ Object.defineProperty(client, "age", {
 console.log("client.age: ", client.age);
 
 client.basket = "basket";
+
+// Телевизор
+
+const tv = {
+  work: false,
+  channels: [1, 2, 3],
+  
+};
