@@ -27,7 +27,7 @@ const funcExpres = function () {
 // arrow function - в браузере window, "use strict" не влияет
 // сохраняют значение this лексического окружения, в котором были созданы
 
-// лексическое окружение это  идентфикаторы связаны со значениями в контексте выполнения кода
+// лексическое окружение это  идентификаторы связаны со значениями в контексте выполнения кода
 // Environment Record - все локальные переменные и функции, объявленные в текущем контексте
 // Outer Environment Reference  - позволяет функции доступ к переменным, определённым во внешних областях видимости
 
@@ -65,7 +65,34 @@ const car = {
     console.log("objThis: ", obj.objThis); // window
   },
 };
+// car.arrow();
+// car.getThisGetter();
 
-car.arrow();
-car.getThisGetter();
+function foo() {
+  console.log(this.a);
+  console.log(this);
+}
 
+var a = 2;
+var o = {
+  a: 3,
+  bar() {
+    console.log(this.a);
+    console.log(this);
+  },
+};
+var p = {
+  a: 4,
+  foo(cb) {
+    console.log(this.a);
+    console.log(this);
+    cb();
+  },
+};
+
+// (o.foo = foo)(); // 2
+// o.foo(); // 3
+// (p.foo = foo)(); // 2
+// p.foo(); // 4
+
+p.foo(o.bar);
