@@ -60,9 +60,9 @@
 
 // console.log("arrResult: ", arrResult);
 
-/*
-Функции цепочки могут также возвращать промисы. В этом случае результат этого промиса попадет в следующий then
-*/
+
+// Функции цепочки могут также возвращать промисы. В этом случае результат этого промиса попадет в следующий then
+
 
 let promise = new Promise(function (resolve, reject) {
   setTimeout(function () {
@@ -129,4 +129,5 @@ let chain = Promise.resolve();
     return new Promise(resolve => setTimeout(resolve, 2000));
   });
 });
+
 
