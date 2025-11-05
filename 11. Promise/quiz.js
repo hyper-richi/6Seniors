@@ -115,18 +115,18 @@ const myPromise3 = function name(params) {
   );
 }; */
 
-async function handlePromises(...args) {
-  const results = [];
+// async function handlePromises(...args) {
+//   const results = [];
 
-  results.push(await myPromise1);
-  console.log(results);
+//   results.push(await myPromise1);
+//   console.log(results);
 
-  results.push(await myPromise2);
-  console.log(results);
+//   results.push(await myPromise2);
+//   console.log(results);
 
-  results.push(await myPromise3);
-  console.log(results);
-}
+//   results.push(await myPromise3);
+//   console.log(results);
+// }
 
 // handlePromises(myPromise1, myPromise2, myPromise3);
 // console.timeEnd("test");
